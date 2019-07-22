@@ -1,9 +1,12 @@
 // Requires
 var express = require('express');
+
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 
 var SEED = require('../config/config').SEED;
+
+
 
 //Inicializar variables
 var app = express();
@@ -13,6 +16,7 @@ var User = require('../models/user');
 app.post('/', (req, res) => {
 
     var body = req.body;
+
 
     User.findOne({ email: body.email }, (err, userDB) => {
 

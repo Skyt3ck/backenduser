@@ -104,9 +104,16 @@ app.post('/', mdAuthentication.verificaToken, (req, res) => {
     var rigths = req.user.role;
 
     if (rigths != 'ADMIN_ROLE') {
-        res.status(401).json({
+        return res.status(401).json({
             ok: false,
             message: { message: 'metodo no permitido a usuarios normales' }
+        });
+    }
+
+    if (body.password == '') {
+        return res.status(400).json({
+            ok: false,
+            message: { message: 'password vacía' }
         });
     }
 
